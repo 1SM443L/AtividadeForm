@@ -7,11 +7,18 @@ LISTA_SEXO= [
     ('Feminino',  'Feminino')
 ]
 
-LISTA_CURSO= [
-    ('Curso técnico', 'Curso técnico'),
-    ('Curso superior',  'Curso superior')
-]
 
+class Curso(models.Model):
+    nome = models.CharField(max_length=150)
+    
+    def __str__(self) -> str:
+        return self.nome
+
+class MiniCursos(models.Model):
+    nome = models.CharField(max_length=150)
+    
+    def __str__(self) -> str:
+        return self.nome
 
 class Aluno(models.Model):
     nome = models.CharField(max_length=150)
@@ -20,8 +27,8 @@ class Aluno(models.Model):
     email = models.EmailField()
     endereço = models.CharField(max_length=150)
     sexo =  models.CharField(max_length=100, choices=LISTA_SEXO)
-    curso = models.CharField(max_length=150, choices=LISTA_CURSO)
-    mini_cursos: models.BooleanField()
+    curso = models.ForeignKey(Curso, null=True, on_delete=models.CASCADE)
+    mini_cursos: models.ManyToManyField(MiniCursos)
     
     def __str__(self) -> str:
         return self.nome
