@@ -7,7 +7,6 @@ LISTA_SEXO= [
     ('Feminino',  'Feminino')
 ]
 
-
 class Curso(models.Model):
     nome = models.CharField(max_length=150)
     
