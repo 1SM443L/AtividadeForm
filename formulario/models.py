@@ -19,7 +19,7 @@ class MiniCursos(models.Model):
     def __str__(self) -> str:
         return self.nome
 
-class Aluno(models.Model):
+class Aluno(models.Model): 
     nome = models.CharField(max_length=150)
     cpf = models.CharField(max_length=50)
     data_nascimento = models.DateField()
@@ -27,7 +27,7 @@ class Aluno(models.Model):
     endereço = models.CharField(max_length=150)
     sexo =  models.CharField(max_length=100, choices=LISTA_SEXO)
     curso = models.ForeignKey(Curso, null=True, on_delete=models.CASCADE)
-    mini_cursos: models.ManyToManyField(MiniCursos)
+    minicursos = models.ManyToManyField(MiniCursos)
     
     def __str__(self) -> str:
         return self.nome

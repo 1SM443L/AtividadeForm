@@ -5,11 +5,14 @@ from formulario.models import Curso, Aluno, MiniCursos
 
 class AlunoAdmin(admin.ModelAdmin):
     list_display = ['nome', 'email', 'cpf']
-    search_list = ['nome']
+    search_fields = ['nome']
 
 class CursoAdmin(admin.ModelAdmin):
     search_fields = ['nome']
 
+class MinicursoAdmin(admin.ModelAdmin):
+    search_fields = ['nome']
+
 admin.site.register(Curso, CursoAdmin) 
-admin.site.register(MiniCursos)
-admin.site.register(Aluno)
+admin.site.register(MiniCursos, MinicursoAdmin)
+admin.site.register(Aluno, AlunoAdmin)
